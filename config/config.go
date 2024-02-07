@@ -59,12 +59,15 @@ func ImportConfig(c Config) *Config {
 	pulsarUrl := c.GetEnv(PulsarUrl, "pulsar://localhost:6650")
 	serverprotocol := c.GetEnv(ServerProtocol, "tcp")
 	serverPort := c.GetEnv(ServerPort, "50053")
-	sendgridKey := c.GetEnv(SendGridApiKey, "G.C3HC0xIiRC2FhzD1Iwl5ag.a6biEm3GcP77eqAVWlYJmB7lHbYFUx-GhLOgZkhBjlw")
+	/* trunk-ignore(trufflehog/SendGrid) */
+	sendgridKey := c.GetEnv(SendGridApiKey, "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")
+	pulsarServiceName := c.GetEnv(PulsarServiceName, "notify-service")
 
 	return &Config{
-		PulsarUrl:      pulsarUrl,
-		ServerProtocol: serverprotocol,
-		ServerPort:     serverPort,
-		SendgridApiKey: sendgridKey,
+		PulsarUrl:         pulsarUrl,
+		ServerProtocol:    serverprotocol,
+		ServerPort:        serverPort,
+		SendgridApiKey:    sendgridKey,
+		PulsarServiceName: pulsarServiceName,
 	}
 }
